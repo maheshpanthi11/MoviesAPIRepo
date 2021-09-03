@@ -28,7 +28,7 @@ namespace Movies.Test
         {
             int? currentPage = null;
             var controller = new MoviesController(movieService.Object);
-            var result = controller.Get(currentPage);
+            var result = controller.GetAll(currentPage);
 
             Assert.IsNotNull(result);
         }

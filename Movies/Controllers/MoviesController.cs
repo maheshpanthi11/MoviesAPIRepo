@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Movies.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class MoviesController : ControllerBase
     {
         private readonly IMovieService _movieService;
@@ -21,12 +21,14 @@ namespace Movies.Controllers
         }
 
         [HttpGet]
-        public List<MovieEntity> Get(int? currentPage)
+        public List<MovieEntity> GetAll(int? currentPage)
         {
             var pageSize = 10;
             if (currentPage == null) currentPage = 0;
             return _movieService.GetMoviesWithPagination((int)currentPage, pageSize);            
         }
+
+        [HttpGet]
         public MovieEntity GetMovieById(int Id)
         {
             return _movieService.GetMovieById(Id);
