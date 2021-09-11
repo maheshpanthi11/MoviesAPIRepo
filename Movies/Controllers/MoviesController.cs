@@ -25,7 +25,7 @@ namespace Movies.Controllers
         {
             var pageSize = 10;
             if (currentPage == null) currentPage = 0;
-            return _movieService.GetMoviesWithPagination((int)currentPage, pageSize);            
+            return _movieService.GetMoviesWithPagination((int)currentPage, pageSize);
         }
 
         [HttpGet]
@@ -35,9 +35,9 @@ namespace Movies.Controllers
         }
 
         [HttpPost]
-        public void AddMovie(MovieEntity movie)
+        public async void AddMovie(MovieEntity movie)
         {
-            _movieService.AddMovie(movie);
+            await _movieService.AddMovie(movie);
         }
 
     }

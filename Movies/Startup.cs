@@ -28,7 +28,16 @@ namespace Movies
         {
             services.AddControllers();
             services.AddScoped<IMovieService, MovieService>();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "Movie API",
+                    Description = "Demo API",
+                    Version = "v1"
+
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,11 +48,7 @@ namespace Movies
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Test1 Api v1");
-            });
+            app.UseSwagger();           
 
             app.UseHttpsRedirection();
 
@@ -54,6 +59,11 @@ namespace Movies
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+            app.UseSwagger(); 
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "movie Api v1");
             });
         }
     }

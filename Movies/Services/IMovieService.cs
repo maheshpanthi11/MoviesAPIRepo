@@ -10,7 +10,7 @@ namespace Movies.Services
     {
         List<MovieEntity> GetMoviesWithPagination(int currentPage, int pageSize);
         MovieEntity GetMovieById(int id);
-        void AddMovie(MovieEntity movie);
+        Task AddMovie(MovieEntity movie);
 
     }
 }

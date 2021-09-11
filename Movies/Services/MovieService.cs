@@ -26,9 +26,9 @@ namespace Movies.Services
             new MovieEntity { Id = 10, Title = "WALL-E", Director = "Andrew Stanton" }};
         }
 
-        public void AddMovie(MovieEntity movie)
+        public async Task AddMovie(MovieEntity movie)
         {
-            Movies.Add(movie);
+            await Task.Run(() => { Movies.Add(movie); });
         }
 
         public MovieEntity GetMovieById(int id)
